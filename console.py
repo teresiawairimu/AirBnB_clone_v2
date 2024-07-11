@@ -135,10 +135,10 @@ class HBNBCommand(cmd.Cmd):
                 value = value[1:-1].replace('_', ' ').replace('\\"', '"')
             else:
                 try:
-                    value = float(value)
+                    value = int(value)
                 except ValueError:
                     try:
-                        value = int(value)
+                        value = float(value)
                     except ValueError:
                         pass
             params[key] = value
