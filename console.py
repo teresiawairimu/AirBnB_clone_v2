@@ -117,7 +117,6 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """ Create an object of any class"""
         given_list = shlex.split(args)
-        print(given_list)
         if len(given_list) == 0:
             print("** class name missing **")
             return
@@ -132,11 +131,8 @@ class HBNBCommand(cmd.Cmd):
             if len(key_value) != 2:
                 continue
             key, value = key_value
-            """if value.startswith("'") and value.endswith("'"):
-                value = value[1:-1].replace('_', ' ').replace('\\"', '"')"""
             if not value.replace('.', '').isdigit():
                 value = value.replace('_', ' ')
-                """print(fDEBUG: Processed sring value for {key}: {value})"""
             else:
                 try:
                     value = int(value)
@@ -146,12 +142,9 @@ class HBNBCommand(cmd.Cmd):
                     except ValueError:
                         pass
             params[key] = value
-        print(f"DEBUG: Final params before object creation: {params}")    
 
         new_instance = HBNBCommand.classes[class_name](**params)
-        print(f"DEBUG: New instance create: {new_instance.__dict__}")
         new_instance.save()
-        print(f"DEBUG: Instance after save: {new_instance.__dict__}")
         print(new_instance.id)
 
     def help_create(self):
