@@ -7,6 +7,7 @@ from models.city import City
 from models.user import User
 from models.place import Place
 from models.review import Review
+from models.amenity import Amenity
 
 class DBStorage:
     """
@@ -54,7 +55,8 @@ class DBStorage:
                     self.__session.query(City).all() + \
                     self.__session.query(User).all() + \
                     self.__session.query(Place).all() + \
-                    self.__session.query(Review).all()
+                    self.__session.query(Review).all() + \
+                    self.__session.query(Amenity).all()
         return {f'{type(obj).__name__}.{obj.id}': obj for obj in objs}
 
     def new(self, obj):
